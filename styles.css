@@ -14,8 +14,14 @@ header {
 }
 
 .logo img {
-    margin-left: 200px;
+    margin-left: 0;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
     border-radius: 150px;
+}
+@media (min-width: 769px) {
+    .logo img { margin-left: 200px; }
 }
 
 h3{
@@ -41,6 +47,7 @@ h3{
     background-color: purple;
     border-radius: 40px;
     font-size: 25px;
+    text-align: center;
 }
 
 nav:hover{
@@ -138,7 +145,6 @@ p {
     flex-direction: column;
 }
 
-
 .footer-links, .footer-social {
     margin: 10px;
 }
@@ -173,4 +179,44 @@ p {
 
 .footer p {
     margin-top: 20px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* --- RESPONSIVE DESIGN --- */
+@media (max-width: 768px) {
+    .cards {
+        flex-direction: column;
+        align-items: center;
+    }
+    .card {
+        width: 90%;
+        font-size: 18px;
+    }
+    .container {
+        padding: 20px;
+    }
+    h3, h1 {
+        font-size: 1.5em;
+    }
+    .learn-more {
+        font-size: 20px;
+        padding: 12px;
+    }
+    header {
+        padding: 5px;
+    }
+    .container-footer {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* Si .container-footer no tiene display:flex, agrégalo: */
+.container-footer {
+    display: flex;
+    justify-content: center;
 }
