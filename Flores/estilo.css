@@ -1,0 +1,83 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.doto {
+  margin: 35px;  
+  font-family: "Doto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 345px;
+  font-style:oblique;
+  font-variation-settings:
+    "ROND" 0;
+}
+
+body{
+    height: 100vh;
+    background-image: url(cielo.gif);
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+}
+
+h1{
+    background-color: black;
+    color: pink;
+    font-size: 35px;
+    margin-top: 15px;
+}
+
+
+div{
+    position: absolute;
+    pointer-events: none;
+    animation: fadeInOut 2s linear infinite;
+    filter: drop-shadow(0 0 15px rgba(0,0,0,0.5));
+}
+
+.learn-more {
+    background-color: orange;
+    color: white;
+    border: none;
+    padding: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 25px;
+    margin-top: 20px;
+}
+
+.learn-more:hover {
+    background-color: purple;
+}
+
+div::before{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: var(--flower-img, url(Naranja.png)) no-repeat center center;
+    background-size: contain;
+    animation: move 2s linear infinite;
+}
+
+@keyframes fadeInOut {
+    0%,100%{
+        opacity: 0;
+    }
+    
+    30%,70%{
+        opacity: 1;
+    }
+}
+
+@keyframes move {
+    0%{
+        transform: translate(0) rotate(0deg);
+    }
+    100%{
+        transform: translate(300px) rotate(360deg);
+    }
+}
