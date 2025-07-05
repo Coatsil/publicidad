@@ -6,51 +6,81 @@
     <title>Flores Amarillas (mi versión).</title>
     <link rel="icon" href="Naranja.png">
     <link rel="stylesheet" href="estilo.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap');
+        
+        body {
+            touch-action: manipulation; /* Mejora la respuesta táctil */
+            overflow-x: hidden; /* Evita desplazamiento horizontal */
+        }
+        
+        div {
+            position: absolute;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-image: var(--flower-img);
+            pointer-events: none; /* Permite interacción con elementos debajo */
+        }
+        
+        .doto {
+            font-family: 'Doto', sans-serif;
+        }
+    </style>
 </head>
-
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap');
-</style>
-
 <body>
 
-    <center>
-        <h1 class="doto">¿Por qué sólo tener ramo de flores amarillas?</h1>
+<center>
+    <h1 class="doto">¿Por qué sólo conformarse con un ramo de flores amarillas?</h1>
+    <h1 class="doto">¡Si puedes tener todas las flores de cempasúchil que tu quieras y cuidar a las plantitas! 
+    <img src="corazon.gif" alt="" width="50"></h1>
+</center>
 
-        <h1 class="doto">¡Si puedes tener todas las flores de cempasúchil que tu quieras y cuidar a las plantitas! <img src="corazon.gif" alt="" width="50"></h1>
-
-    </center>
-
-    <script>
-        const flowerImages = ['Naranja.png', 'Morada.png','Amarilla.png'];
-        let currentFlowerIndex = 0;
-
-        document.addEventListener('mousemove', (e) => {
-            const body = document.querySelector('body');
-            const flores = document.createElement('div');
-            const x = e.offsetX;
-            const y = e.offsetY;
-            flores.style.left = x + 'px';
-            flores.style.top = y + 'px';
-            
-            const size = Math.random()*40;
-            flores.style.width= 20+size+'px';
-            flores.style.height=20+size+'px';
-
-            const rotation = Math.random() * 360;
-            flores.style.transform = `rotate(${rotation}deg)`;
-
-            currentFlowerIndex = (currentFlowerIndex + 1) % flowerImages.length;
-            flores.style.setProperty('--flower-img', `url(${flowerImages[currentFlowerIndex]})`);
-
-            body.appendChild(flores);           
-            setTimeout(()=>{
-                flores.remove();
-            },2000);
-        });
-
-    </script>
+<script>
+    const flowerImages = ['Naranja.png', 'Morada.png','Amarilla.png'];
+    let currentFlowerIndex = 0;
     
-</body>
+    function createFlower(x, y) {
+        const body = document.querySelector('body');
+        const flores = document.createElement('div');
+        
+        flores.style.left = x + 'px';
+        flores.style.top = y + 'px';
+        
+        const size = Math.random() * 40;
+        flores.style.width = 20 + size + 'px';
+        flores.style.height = 20 + size + 'px';
+        
+        const rotation = Math.random() * 360;
+        flores.style.transform = `rotate(${rotation}deg)`;
+        
+        currentFlowerIndex = (currentFlowerIndex + 1) % flowerImages.length;
+        flores.style.setProperty('--flower-img', `url(${flowerImages[currentFlowerIndex]})`);
+        
+        body.appendChild(flores);
+        
+        setTimeout(() => {
+            flores.remove();
+        }, 1000);
+    }
+    
+    // Eventos de mouse
+    document.addEventListener('mousemove', (e) => {
+        createFlower(e.clientX, e.clientY);
+    });
+    
+    // Eventos táctiles
+    document.addEventListener('touchmove', (e) => {
+        e.preventDefault(); // Previene el desplazamiento predeterminado
+        const touch = e.touches[0];
+        createFlower(touch.clientX, touch.clientY);
+    }, { passive: false });
+    
+    // Evento para toques simples (opcional)
+    document.addEventListener('touchstart', (e) => {
+        const touch = e.touches[0];
+        createFlower(touch.clientX, touch.clientY);
+    });
+</script>
 
+</body>
 </html>
